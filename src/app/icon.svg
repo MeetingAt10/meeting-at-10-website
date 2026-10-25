@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="title">
+  <title id="title">Meeting at 10</title>
+  <style>.f{fill:#031B38}.p{fill:#F7F8FA}@media (prefers-color-scheme:dark){.f{fill:#E8EEF7}.p{fill:#031B38}}</style>
+  <rect x="24" y="64" width="464" height="440" rx="88" class="f"/>
+  <rect x="62" y="104" width="388" height="362" rx="48" class="p"/>
+  <rect x="130" y="24" width="48" height="116" rx="24" class="f"/>
+  <rect x="334" y="24" width="48" height="116" rx="24" class="f"/>
+  <rect x="82" y="182" width="348" height="250" rx="58" fill="#0075FF"/>
+  <path d="M141 246a8 8 0 0 1 5-7l39-15a15 15 0 0 1 5-1h24a9 9 0 0 1 9 9v143a9 9 0 0 1-9 9h-29a9 9 0 0 1-9-9V270l-26 7a7 7 0 0 1-9-7v-24Z" fill="#FFFFFF"/>
+  <path fill-rule="evenodd" d="M314 221c-46 0-73 34-73 83s27 83 73 83 73-34 73-83-27-83-73-83Zm0 43c-17 0-26 14-26 40s9 40 26 40 26-14 26-40-9-40-26-40Z" fill="#FFFFFF"/>
+</svg>
