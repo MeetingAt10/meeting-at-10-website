@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meeting At 10
 
-## Getting Started
+Public team website for the eleven-person capstone team building ACCS for the QCU College of Computer Studies. The site uses Next.js 16, React 19 and `@meetingat10/design-system` pinned to GitHub tag `v1.1.0`. It exports static files to `out/`.
 
-First, run the development server:
+## Run and verify
+
+Use Node.js 22, matching CI. Installing the private design-system package requires GitHub SSH access.
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Development runs at `http://localhost:3000`. Run the checks serially on the shared development machine:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+flock /tmp/claude-1000/capstone-build.lock pcore npm run lint
+flock /tmp/claude-1000/capstone-build.lock pcore npm run typecheck
+flock /tmp/claude-1000/capstone-build.lock pcore npm run verify
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`verify` builds the static export and runs the Node.js compliance tests against `out/`. `npm test` checks an existing export. Preview the built files with a static server:
 
-## Learn More
+```bash
+python3 -m http.server 4174 --directory out
+```
 
-To learn more about Next.js, take a look at the following resources:
+See [module compliance](docs/module-compliance.md) for the acceptance scope and recorded results.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content and routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`/` contains the work, process, team and illustrative working-day sections. The team list publishes surnames and project roles. The timetable's now-line stays at 10:00.
 
-## Deploy on Vercel
+The page names its sources for 58 modules, 58 user stories and 183 black-box cases. The AWS site count is derived from the ten entries in `src/lib/sites.ts`: seven application sites and the landing, design-system and team sites.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design system and imagery
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The Office Hours components provide the navigation, cards, timetable and motion. The transparent renders shipped in design system v1.1.0 were generated in `meeting-at-ten-assets/` and processed by the design-system imagery pipeline. `scripts/copy-imagery.mjs` copies package WebP files into the gitignored `public/imagery/` directory before development and builds. Image dimensions come from the package's `imagery` manifest. Decorative images use empty alt text. The linked-C render is a proposed motif; the ACCS wordmark remains the door plate.
+
+## Build-time URLs
+
+`src/lib/sites.ts` reads these public environment variables when the site builds. Rebuild after changing a URL. The technical `portal` key refers to ACCS Home in the interface.
+
+| Variable | Default |
+|---|---|
+| `NEXT_PUBLIC_LANDING_URL` | https://d1o7nnm2soozyn.cloudfront.net |
+| `NEXT_PUBLIC_PORTAL_URL` | https://d1njh2nozcwz0u.cloudfront.net |
+| `NEXT_PUBLIC_FORUMS_URL` | https://dgkec2nkm3n3s.cloudfront.net |
+| `NEXT_PUBLIC_SCHEDULE_URL` | https://d19h8rd7p5r1ek.cloudfront.net |
+| `NEXT_PUBLIC_CASES_URL` | https://d3aoaw841wc6e2.cloudfront.net |
+| `NEXT_PUBLIC_EVALUATIONS_URL` | https://d3nw1hv5xoevnq.cloudfront.net |
+| `NEXT_PUBLIC_RECORDS_URL` | https://du3q9mhys1ofn.cloudfront.net |
+| `NEXT_PUBLIC_ADMIN_URL` | https://d3ru4j9n1z7rme.cloudfront.net |
+| `NEXT_PUBLIC_DESIGN_URL` | https://dqd3zf55ijbpq.cloudfront.net |
+| `NEXT_PUBLIC_MEETING_URL` | https://d34p7a45addcro.cloudfront.net |
+
+
+
+## Deployment
+
+`.github/workflows/deploy.yml` runs on pushes to `main` and on manual dispatch. It installs the private design-system dependency with `DS_DEPLOY_KEY`, reads the `MeetingBucket`, `MeetingDistributionId` and `MeetingUrl` outputs from the `accs-dev` CloudFormation stack in `ap-southeast-1`, builds the export, uploads `out/` to S3 and invalidates CloudFront. AWS access uses the repository's configured deployment secrets.
+
+The deployed URL is the corresponding CloudFront default above. Custom domains remain a proposal. This is a capstone prototype with synthetic data and no official QCU endorsement.

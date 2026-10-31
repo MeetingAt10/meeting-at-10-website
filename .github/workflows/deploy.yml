@@ -52,7 +52,7 @@ jobs:
           echo "distribution=$(out ${SITE}DistributionId)" >> "$GITHUB_OUTPUT"
           echo "url=$(out ${SITE}Url)" >> "$GITHUB_OUTPUT"
 
-      - run: npm run build
+      - run: npm run verify
 
       - name: Upload
         run: aws s3 sync out "s3://${{ steps.stack.outputs.bucket }}" --delete

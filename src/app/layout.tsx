@@ -20,8 +20,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Meeting At 10 · Coming soon",
-  description: "Meeting At 10, the capstone team behind ACCS. Coming soon.",
+  title: "Meeting At 10 · The team behind ACCS",
+  description: "Meet the eleven-person capstone team building ACCS for the QCU College of Computer Studies. Explore our work, process and design system.",
 };
 
 export const viewport: Viewport = {
