@@ -33,9 +33,9 @@ See [module compliance](docs/module-compliance.md) for the acceptance scope and 
 
 The page names its sources for 58 modules, 58 user stories and 183 black-box cases. The AWS site count is derived from the ten entries in `src/lib/sites.ts`: seven application sites and the landing, design-system and team sites.
 
-## Design system and imagery
+## Design system
 
-The Office Hours components provide the navigation, cards, timetable and motion. The transparent renders shipped in design system v1.1.0 were generated in `meeting-at-ten-assets/` and processed by the design-system imagery pipeline. `scripts/copy-imagery.mjs` copies package WebP files into the gitignored `public/imagery/` directory before development and builds. Image dimensions come from the package's `imagery` manifest. Decorative images use empty alt text. The linked-C render is a proposed motif; the ACCS wordmark remains the door plate.
+The Office Hours components provide the navigation, timetable, case timeline and motion. The page is typography and live component previews; it ships no decorative image files. Page styling lives in `src/app/globals.css` on `--ds-*` variables and the brand palette.
 
 ## Build-time URLs
 
@@ -60,4 +60,4 @@ The Office Hours components provide the navigation, cards, timetable and motion.
 
 `.github/workflows/deploy.yml` runs on pushes to `main` and on manual dispatch. It installs the private design-system dependency with `DS_DEPLOY_KEY`, reads the `MeetingBucket`, `MeetingDistributionId` and `MeetingUrl` outputs from the `accs-dev` CloudFormation stack in `ap-southeast-1`, builds the export, uploads `out/` to S3 and invalidates CloudFront. AWS access uses the repository's configured deployment secrets.
 
-The deployed URL is the corresponding CloudFront default above. Custom domains remain a proposal. This is a capstone prototype with synthetic data and no official QCU endorsement.
+The deployed URL is the corresponding CloudFront default above. Custom domains remain a proposal.

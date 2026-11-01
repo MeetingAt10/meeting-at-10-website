@@ -1,0 +1,395 @@
+{
+ "subdomains": [
+  {
+   "id": "portal",
+   "name": "ACCS Home"
+  },
+  {
+   "id": "forums",
+   "name": "Forums"
+  },
+  {
+   "id": "schedule",
+   "name": "Schedule"
+  },
+  {
+   "id": "cases",
+   "name": "Cases"
+  },
+  {
+   "id": "evaluations",
+   "name": "Evaluations"
+  },
+  {
+   "id": "records",
+   "name": "Records"
+  },
+  {
+   "id": "admin",
+   "name": "Admin"
+  }
+ ],
+ "roles": [
+  "All users",
+  "Student",
+  "CCS Student Organization",
+  "Professor",
+  "CCS Staff",
+  "Program Chair",
+  "Dean",
+  "QCU Administrator / Moderator",
+  "Guidance",
+  "OSAS",
+  "Office of the University President"
+ ],
+ "modules": [
+  {
+   "id": "ALL-01",
+   "name": "Identity and role access",
+   "role": "All users",
+   "site": "portal"
+  },
+  {
+   "id": "ALL-02",
+   "name": "Profiles and personnel directory",
+   "role": "All users",
+   "site": "forums"
+  },
+  {
+   "id": "ALL-03",
+   "name": "CCS feed and announcements",
+   "role": "All users",
+   "site": "forums"
+  },
+  {
+   "id": "ALL-04",
+   "name": "AI navigation assistant",
+   "role": "All users",
+   "site": "portal"
+  },
+  {
+   "id": "ALL-05",
+   "name": "Role-aware notifications",
+   "role": "All users",
+   "site": "portal"
+  },
+  {
+   "id": "STU-01",
+   "name": "Section and subject membership",
+   "role": "Student",
+   "site": "forums"
+  },
+  {
+   "id": "STU-02",
+   "name": "Discussion participation",
+   "role": "Student",
+   "site": "forums"
+  },
+  {
+   "id": "STU-03",
+   "name": "Student messaging",
+   "role": "Student",
+   "site": "forums"
+  },
+  {
+   "id": "STU-04",
+   "name": "Student calendar",
+   "role": "Student",
+   "site": "schedule"
+  },
+  {
+   "id": "STU-05",
+   "name": "Consultation requests",
+   "role": "Student",
+   "site": "schedule"
+  },
+  {
+   "id": "STU-06",
+   "name": "Incident report submission",
+   "role": "Student",
+   "site": "cases"
+  },
+  {
+   "id": "STU-07",
+   "name": "Progressive anonymity",
+   "role": "Student",
+   "site": "cases"
+  },
+  {
+   "id": "STU-08",
+   "name": "Discussion-to-report conversion",
+   "role": "Student",
+   "site": "cases"
+  },
+  {
+   "id": "STU-09",
+   "name": "Report and case timeline",
+   "role": "Student",
+   "site": "cases"
+  },
+  {
+   "id": "STU-10",
+   "name": "Student faculty evaluation",
+   "role": "Student",
+   "site": "evaluations"
+  },
+  {
+   "id": "STU-11",
+   "name": "Account standing view",
+   "role": "Student",
+   "site": "portal"
+  },
+  {
+   "id": "STU-12",
+   "name": "Notification preferences",
+   "role": "Student",
+   "site": "portal"
+  },
+  {
+   "id": "ORG-01",
+   "name": "Organization space",
+   "role": "CCS Student Organization",
+   "site": "forums"
+  },
+  {
+   "id": "ORG-02",
+   "name": "Organization announcements",
+   "role": "CCS Student Organization",
+   "site": "forums"
+  },
+  {
+   "id": "PRO-01",
+   "name": "Teaching roster",
+   "role": "Professor",
+   "site": "forums"
+  },
+  {
+   "id": "PRO-02",
+   "name": "Class and faculty discussion",
+   "role": "Professor",
+   "site": "forums"
+  },
+  {
+   "id": "PRO-03",
+   "name": "Professor messaging",
+   "role": "Professor",
+   "site": "forums"
+  },
+  {
+   "id": "PRO-04",
+   "name": "Availability management",
+   "role": "Professor",
+   "site": "schedule"
+  },
+  {
+   "id": "PRO-05",
+   "name": "Consultation decisions",
+   "role": "Professor",
+   "site": "schedule"
+  },
+  {
+   "id": "PRO-06",
+   "name": "Assigned grievance queue",
+   "role": "Professor",
+   "site": "cases"
+  },
+  {
+   "id": "PRO-07",
+   "name": "Faculty evaluation participation",
+   "role": "Professor",
+   "site": "evaluations"
+  },
+  {
+   "id": "PRO-08",
+   "name": "Own evaluation summary",
+   "role": "Professor",
+   "site": "evaluations"
+  },
+  {
+   "id": "STF-01",
+   "name": "Staff workspace",
+   "role": "CCS Staff",
+   "site": "portal"
+  },
+  {
+   "id": "CHR-01",
+   "name": "Program dashboard",
+   "role": "Program Chair",
+   "site": "portal"
+  },
+  {
+   "id": "CHR-02",
+   "name": "Conflict-aware report intake",
+   "role": "Program Chair",
+   "site": "cases"
+  },
+  {
+   "id": "CHR-03",
+   "name": "Program grievance analytics",
+   "role": "Program Chair",
+   "site": "records"
+  },
+  {
+   "id": "CHR-04",
+   "name": "Program evaluation oversight",
+   "role": "Program Chair",
+   "site": "evaluations"
+  },
+  {
+   "id": "CHR-05",
+   "name": "Authorized offense view",
+   "role": "Program Chair",
+   "site": "records"
+  },
+  {
+   "id": "CHR-06",
+   "name": "Chair communication",
+   "role": "Program Chair",
+   "site": "forums"
+  },
+  {
+   "id": "CHR-07",
+   "name": "Similar-report consolidation",
+   "role": "Program Chair",
+   "site": "cases"
+  },
+  {
+   "id": "DEAN-01",
+   "name": "College oversight dashboard",
+   "role": "Dean",
+   "site": "portal"
+  },
+  {
+   "id": "DEAN-02",
+   "name": "Dean escalation queue",
+   "role": "Dean",
+   "site": "cases"
+  },
+  {
+   "id": "DEAN-03",
+   "name": "Semestral evaluation administration",
+   "role": "Dean",
+   "site": "evaluations"
+  },
+  {
+   "id": "DEAN-04",
+   "name": "College evaluation results",
+   "role": "Dean",
+   "site": "evaluations"
+  },
+  {
+   "id": "DEAN-05",
+   "name": "Authorized disciplinary view",
+   "role": "Dean",
+   "site": "records"
+  },
+  {
+   "id": "DEAN-06",
+   "name": "Dean communication and calendar",
+   "role": "Dean",
+   "site": "forums"
+  },
+  {
+   "id": "ADM-01",
+   "name": "Role and system configuration",
+   "role": "QCU Administrator / Moderator",
+   "site": "admin"
+  },
+  {
+   "id": "ADM-02",
+   "name": "Content moderation",
+   "role": "QCU Administrator / Moderator",
+   "site": "admin"
+  },
+  {
+   "id": "ADM-03",
+   "name": "Feature restriction administration",
+   "role": "QCU Administrator / Moderator",
+   "site": "records"
+  },
+  {
+   "id": "ADM-04",
+   "name": "Audit and adoption monitoring",
+   "role": "QCU Administrator / Moderator",
+   "site": "admin"
+  },
+  {
+   "id": "ADM-05",
+   "name": "Chatbot and uptime monitoring",
+   "role": "QCU Administrator / Moderator",
+   "site": "admin"
+  },
+  {
+   "id": "ADM-06",
+   "name": "Reported-content validation",
+   "role": "QCU Administrator / Moderator",
+   "site": "admin"
+  },
+  {
+   "id": "GUD-01",
+   "name": "Case File intake",
+   "role": "Guidance",
+   "site": "cases"
+  },
+  {
+   "id": "GUD-02",
+   "name": "Guidance case handling",
+   "role": "Guidance",
+   "site": "cases"
+  },
+  {
+   "id": "GUD-03",
+   "name": "Offense and Good Moral support",
+   "role": "Guidance",
+   "site": "records"
+  },
+  {
+   "id": "GUD-04",
+   "name": "Restriction oversight",
+   "role": "Guidance",
+   "site": "records"
+  },
+  {
+   "id": "GUD-05",
+   "name": "Guidance communication and calendar",
+   "role": "Guidance",
+   "site": "forums"
+  },
+  {
+   "id": "OSAS-01",
+   "name": "OSAS case intake and handling",
+   "role": "OSAS",
+   "site": "cases"
+  },
+  {
+   "id": "OSAS-02",
+   "name": "Offense tracking",
+   "role": "OSAS",
+   "site": "records"
+  },
+  {
+   "id": "OSAS-03",
+   "name": "Good Moral and restriction oversight",
+   "role": "OSAS",
+   "site": "records"
+  },
+  {
+   "id": "OSAS-04",
+   "name": "OSAS communication and calendar",
+   "role": "OSAS",
+   "site": "forums"
+  },
+  {
+   "id": "PRES-01",
+   "name": "Executive case intake",
+   "role": "Office of the University President",
+   "site": "cases"
+  },
+  {
+   "id": "PRES-02",
+   "name": "Executive case action",
+   "role": "Office of the University President",
+   "site": "cases"
+  }
+ ]
+}

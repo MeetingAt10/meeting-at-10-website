@@ -40,5 +40,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# design system renders, copied by scripts/copy-imagery.mjs
-/public/imagery/

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const html = readFileSync("out/index.html", "utf8");
@@ -37,7 +37,7 @@ test("sourced specification counts are present in the exported page", () => {
 
 test("all ecosystem links use configured destinations and every page anchor exists", () => {
   assert.equal(Object.keys(configuredSites).length, 10);
-  const destinations = new Set([configuredSites.landing, configuredSites.design, `${configuredSites.portal}/sign-in`]);
+  const destinations = new Set([configuredSites.landing, configuredSites.design, `${configuredSites.portal}/sign-in`, `${configuredSites.portal}/register`, "https://github.com/MeetingAt10"]);
   const ids = new Set([...markup.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => decode(id)));
   const external = [];
   for (const [, rawHref] of markup.matchAll(/<a\b[^>]*\bhref="([^"]*)"/g)) {
@@ -50,17 +50,17 @@ test("all ecosystem links use configured destinations and every page anchor exis
   assert.doesNotMatch(markup, /access-ccs\.com/);
 });
 
-test("every decorative image has dimensions, empty alt text and an exported file", () => {
-  const images = [...markup.matchAll(/<img\b[^>]*>/g)].map(([tag]) => attributes(tag));
-  assert.ok(images.length >= 7);
-  for (const image of images) {
-    assert.ok(Number(image.width) > 0, image.src);
-    assert.ok(Number(image.height) > 0, image.src);
-    assert.equal(image.alt, "", image.src);
-    assert.ok(image.src.startsWith("/imagery/"), image.src);
-    assert.ok(existsSync(path.join("out", image.src)), image.src);
+test("the page ships no decorative render files", () => {
+  assert.doesNotMatch(markup, /\/imagery\//);
+});
+
+test("static export never links to the admin, records or cases consoles", () => {
+  const origins = ["admin", "records", "cases"].map((key) => new URL(configuredSites[key]).origin);
+  const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith(".html") ? [path.join(dir, e.name)] : []);
+  for (const file of walk("out")) {
+    const page = readFileSync(file, "utf8");
+    for (const origin of origins) assert.ok(!page.includes(`href="${origin}`), `${file} links to ${origin}`);
   }
-  assert.ok(images.some((image) => image.loading === "eager" && image.fetchPriority === "high"));
 });
 
 test("landmarks, the fixed illustrative day and motion primitives survive static export", () => {
@@ -68,9 +68,8 @@ test("landmarks, the fixed illustrative day and motion primitives survive static
   assert.equal([...markup.matchAll(/<main\b/g)].length, 1);
   assert.equal([...markup.matchAll(/<footer\b/g)].length, 1);
   assert.match(markup, /Skip to content/);
-  for (const id of ["main", "work", "process", "team", "day"]) assert.match(markup, new RegExp(`id="${id}"`));
-  for (const text of ["10:00", "Standup", "Build", "Review", "Ship", "not a live schedule"]) assert.ok(markup.includes(text), text);
-  for (const cls of ["ds-word-rise", "ds-reveal", "ds-marquee", "ds-scroll-progress", "ds-spotlight", "ds-aurora", "ds-grid-backdrop"]) assert.ok(markup.includes(cls), cls);
-  assert.match(markup, /aria-hidden="true" inert=""/);
-  assert.doesNotMatch(markup, /Coming soon/i);
+  for (const id of ["main", "about", "projects", "architecture", "timeline", "team", "stats", "contact"]) assert.match(markup, new RegExp(`id="${id}"`));
+  for (const text of ["10:00", "Standup", "Build", "Review", "Ship"]) assert.ok(markup.includes(text), text);
+  for (const cls of ["ds-word-rise", "ds-reveal", "ds-scroll-progress", "ds-spotlight", "ds-aurora", "ds-grid-backdrop"]) assert.ok(markup.includes(cls), cls);
+  assert.doesNotMatch(markup, /Coming soon|prototype|synthetic|sample data/i);
 });

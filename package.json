@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/copy-imagery.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/copy-imagery.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -14,7 +12,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@meetingat10/design-system": "github:MeetingAt10/meetingatten-design-system#v1.1.0",
+    "@meetingat10/design-system": "github:MeetingAt10/meetingatten-design-system#v1.2.1",
+    "motion": "^14.9.0",
     "next": "16.4.2",
     "react": "19.3.0",
     "react-dom": "19.3.0"

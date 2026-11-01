@@ -20,14 +20,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Meeting At 10 · The team behind ACCS",
-  description: "Meet the eleven-person capstone team building ACCS for the QCU College of Computer Studies. Explore our work, process and design system.",
+  title: "Meeting At 10 - The team behind ACCS",
+  description: "Meeting At 10 is the eleven-person team building ACCS for the QCU College of Computer Studies. Explore our projects, architecture and design system.",
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F5F7FB" },
-    { media: "(prefers-color-scheme: dark)", color: "#0B1220" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F6F1" },
+    { media: "(prefers-color-scheme: dark)", color: "#070D1C" },
   ],
 };
 
