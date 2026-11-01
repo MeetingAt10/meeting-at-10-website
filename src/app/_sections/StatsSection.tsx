@@ -7,13 +7,13 @@ const stats = [
   { id: "cases", value: 183, label: "black-box test cases", source: "DOC005 test blueprint" },
   { id: "sites", value: Object.keys(sites).length, label: "sites on AWS", source: "accs-dev CloudFormation" },
   { id: "subdomains", value: 7, label: "application subdomains", source: "ACCS module sites" },
-  { id: "members", value: 11, label: "team members", source: "Meeting At 10" },
+  { id: "members", value: 11, label: "team members", source: "Meeting At 10 roster" },
 ];
 
 export function StatsSection() {
   return (
     <section id="stats" className="mt-section mt-stats" aria-labelledby="stats-title">
-      <Reveal><h2 id="stats-title" className="mt-h2">What the record says</h2></Reveal>
+      <Reveal><h2 id="stats-title" className="mt-h2">The record in numbers</h2></Reveal>
       <dl className="mt-ledger">
         {stats.map((s, i) => (
           <Reveal key={s.id} index={i} className="mt-ledger__row">

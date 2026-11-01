@@ -1,6 +1,6 @@
 # Meeting At 10
 
-Public team website for the eleven-person capstone team building ACCS for the QCU College of Computer Studies. The site uses Next.js 16, React 19 and `@meetingat10/design-system` pinned to GitHub tag `v1.1.0`. It exports static files to `out/`.
+Public website for Meeting At 10, the eleven students who build ACCS for the QCU College of Computer Studies. The site uses Next.js 16, React 19 and `@meetingat10/design-system` pinned to GitHub tag `v1.2.1`. It exports static files to `out/`.
 
 ## Run and verify
 
@@ -25,17 +25,15 @@ flock /tmp/claude-1000/capstone-build.lock pcore npm run verify
 python3 -m http.server 4174 --directory out
 ```
 
-See [module compliance](docs/module-compliance.md) for the acceptance scope and recorded results.
-
 ## Content and routes
 
-`/` contains the work, process, team and illustrative working-day sections. The team list publishes surnames and project roles. The timetable's now-line stays at 10:00.
+`/` has sections for the team, its projects, the module inventory, the release process and a typical working day. The team roster lists surnames and project roles. The timetable's now-line stays at 10:00.
 
-The page names its sources for 58 modules, 58 user stories and 183 black-box cases. The AWS site count is derived from the ten entries in `src/lib/sites.ts`: seven application sites and the landing, design-system and team sites.
+The page names its sources for 58 modules, 58 user stories and 183 black-box cases. The AWS site count comes from the ten entries in `src/lib/sites.ts`: seven application sites, the landing site, the design-system site and this site.
 
 ## Design system
 
-The Office Hours components provide the navigation, timetable, case timeline and motion. The page is typography and live component previews; it ships no decorative image files. Page styling lives in `src/app/globals.css` on `--ds-*` variables and the brand palette.
+The Office Hours components provide the timetable, case timeline, badges and motion. The page uses type and live component previews, and ships no image files. Styling lives in `src/app/globals.css` and builds on the `--ds-*` variables and the brand palette.
 
 ## Build-time URLs
 
@@ -53,7 +51,6 @@ The Office Hours components provide the navigation, timetable, case timeline and
 | `NEXT_PUBLIC_ADMIN_URL` | https://d3ru4j9n1z7rme.cloudfront.net |
 | `NEXT_PUBLIC_DESIGN_URL` | https://dqd3zf55ijbpq.cloudfront.net |
 | `NEXT_PUBLIC_MEETING_URL` | https://d34p7a45addcro.cloudfront.net |
-
 
 
 ## Deployment

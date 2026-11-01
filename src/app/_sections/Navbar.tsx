@@ -29,7 +29,7 @@ export function Navbar() {
           {links.map((l) => <a key={l.href} href={l.href}>{l.label}</a>)}
         </nav>
         <div className="mt-nav__actions">
-          <Button href={sites.landing} size="sm" iconEnd="arrow-up-right">See ACCS</Button>
+          <Button href={sites.landing} size="sm" iconEnd="arrow-up-right">Visit ACCS</Button>
           <button ref={toggle} type="button" className="mt-nav__toggle" aria-expanded={open} aria-controls="mt-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)}>
             <Icon name={open ? "x" : "list"} size={24} />
           </button>
@@ -43,7 +43,7 @@ export function Navbar() {
                 {links.map((l, i) => (
                   <motion.a key={l.href} href={l.href} onClick={() => setOpen(false)} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.06 * i + 0.1, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>{l.label}</motion.a>
                 ))}
-                <Button href={sites.landing} block iconEnd="arrow-up-right">See ACCS</Button>
+                <Button href={sites.landing} block iconEnd="arrow-up-right">Visit ACCS</Button>
               </div>
             </motion.nav>
           )}

@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Aurora, AvatarGroup, Badge, Button, CaseTimeline, GridBackdrop } from "@meetingat10/design-system/react";
+import { Aurora, AvatarGroup, Badge, Button, CaseTimeline } from "@meetingat10/design-system/react";
 import { sites } from "@/lib/sites";
 
 const words: [string, string?][] = [["We"], ["meet"], ["at"], ["10", "."], ["Then"], ["we"], ["ship", "."]];
@@ -7,7 +7,7 @@ const words: [string, string?][] = [["We"], ["meet"], ["at"], ["10", "."], ["The
 export function Hero() {
   return (
     <section className="mt-hero" aria-labelledby="hero-title">
-      <Aurora /><GridBackdrop />
+      <Aurora />
       <div className="mt-hero__copy">
         <div id="hero-title" className="mt-hero__title">
           <h1 className="ds-word-rise">
@@ -19,14 +19,14 @@ export function Hero() {
             </span>
           </h1>
         </div>
-        <p className="mt-hero__lead" data-seq="1">Eleven students building ACCS, the live college workspace for QCU Computer Studies.</p>
+        <p className="mt-hero__lead" data-seq="1">Eleven QCU students build and run ACCS, the workspace for the College of Computer Studies.</p>
         <div className="mt-hero__actions" data-seq="2">
-          <Button href={sites.landing} size="lg" iconEnd="arrow-up-right">See ACCS</Button>
-          <Button href="#architecture" size="lg" variant="secondary">How it is built</Button>
+          <Button href={sites.landing} size="lg" iconEnd="arrow-up-right">Visit ACCS</Button>
+          <Button href="#architecture" size="lg" variant="secondary">See the architecture</Button>
         </div>
       </div>
       <div className="mt-hero__visual" data-seq="0">
-        <div className="mt-glass mt-hero__window">
+        <div className="mt-panel mt-hero__window">
           <div className="mt-hero__chrome"><span>Cases</span><span className="mt-mono">CCS-2026-0142</span></div>
           <div className="mt-hero__row">
             <Badge tone="info">Under review</Badge>

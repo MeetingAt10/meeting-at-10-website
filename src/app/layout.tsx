@@ -20,8 +20,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Meeting At 10 - The team behind ACCS",
-  description: "Meeting At 10 is the eleven-person team building ACCS for the QCU College of Computer Studies. Explore our projects, architecture and design system.",
+  title: "Meeting At 10, the team behind ACCS",
+  description: "Meeting At 10 is eleven QCU students who specify, design, build and run ACCS for the College of Computer Studies.",
 };
 
 export const viewport: Viewport = {

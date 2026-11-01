@@ -47,7 +47,7 @@ export function ModuleExplorer() {
         <motion.ul layout className="mt-modules">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((m) => (
-              <motion.li key={m.id} layout initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.94 }} transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }} className="mt-module">
+              <motion.li key={m.id} layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }} className="mt-module">
                 <span className="mt-module__code mt-mono">{m.id}</span>
                 <span className="mt-module__name">{m.name}</span>
                 <span className="mt-module__meta">{nameOf[m.site]} · {m.role}</span>
