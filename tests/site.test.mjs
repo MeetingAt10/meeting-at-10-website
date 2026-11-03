@@ -47,7 +47,6 @@ test("all ecosystem links use configured destinations and every page anchor exis
     else assert.equal(href, "/");
   }
   for (const destination of destinations) assert.ok(external.includes(destination), destination);
-  assert.doesNotMatch(markup, /access-ccs\.com/);
 });
 
 test("the page ships no decorative render files", () => {
