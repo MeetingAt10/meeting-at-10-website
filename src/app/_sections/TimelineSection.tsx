@@ -1,7 +1,7 @@
 import { Reveal } from "@meetingat10/design-system/react";
 
 const steps = [
-  { title: "Specify", text: "The DOC003 module inventory and 58 user stories fix what belongs in scope." },
+  { title: "Specify", text: "The module list and 58 user stories fix what belongs in scope." },
   { title: "Design", text: "Office Hours tokens and components give every surface the same look." },
   { title: "Build", text: "Portal, API, landing and this site stay small and get reviewed in pairs." },
   { title: "Verify", text: "183 black-box test cases and browser flows run before anything ships." },

@@ -29,7 +29,7 @@ python3 -m http.server 4174 --directory out
 
 `/` has sections for the team, its projects, the module inventory, the release process and a typical working day. The team roster lists surnames and project roles. The timetable's now-line stays at 10:00.
 
-The page names its sources for 58 modules, 58 user stories and 183 black-box cases. The AWS site count comes from the ten entries in `src/lib/sites.ts`: seven application sites, the landing site, the design-system site and this site.
+The page shows counts for 58 modules, 58 user stories and 183 black-box cases without source captions. Visible copy carries no document codes or module IDs. The AWS site count comes from the ten entries in `src/lib/sites.ts`: seven application sites, the landing site, the design-system site and this site.
 
 ## Design system
 

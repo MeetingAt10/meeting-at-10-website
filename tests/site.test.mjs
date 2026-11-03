@@ -32,7 +32,10 @@ test("sourced specification counts are present in the exported page", () => {
     assert.ok(count.includes(`>${value}<`), `${id} has its final value in static HTML`);
   }
   assert.equal(Object.keys(configuredSites).length, 10);
-  for (const source of ["DOC003", "DOC004", "DOC005", "accs-dev CloudFormation"]) assert.ok(markup.includes(source), source);
+  const visible = markup.replace(/<script[\s\S]*?<\/script>/g, "");
+  assert.doesNotMatch(visible, /DOC0\d\d/);
+  assert.doesNotMatch(visible, /\b(ALL|STU|ORG|PRO|STF|CHR|DEAN|GUD|OSAS|PRES|ADM)-\d{2}\b/);
+  assert.ok(!visible.includes("CloudFormation"));
 });
 
 test("all ecosystem links use configured destinations and every page anchor exists", () => {
