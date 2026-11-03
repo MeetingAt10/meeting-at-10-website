@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   workflow_dispatch:
 
 concurrency:
@@ -14,7 +14,7 @@ permissions:
 
 env:
   AWS_REGION: ap-southeast-1
-  STACK: accs-dev
+  STACK: ${{ github.ref_name == 'main' && 'accs-prod' || 'accs-dev' }} # main serves the plain hostnames, dev the -dev hostnames
   SITE: Meeting
 
 jobs:
@@ -51,8 +51,14 @@ jobs:
           echo "bucket=$(out ${SITE}Bucket)" >> "$GITHUB_OUTPUT"
           echo "distribution=$(out ${SITE}DistributionId)" >> "$GITHUB_OUTPUT"
           echo "url=$(out ${SITE}Url)" >> "$GITHUB_OUTPUT"
+          echo "portal=$(out AppUrl)" >> "$GITHUB_OUTPUT"
+          echo "design=$(out DesignUrl)" >> "$GITHUB_OUTPUT"
 
+      # Links point at the same environment's portal and design system (plain hosts on main, -dev hosts on dev).
       - run: npm run verify
+        env:
+          NEXT_PUBLIC_PORTAL_URL: ${{ steps.stack.outputs.portal }}
+          NEXT_PUBLIC_DESIGN_URL: ${{ steps.stack.outputs.design }}
 
       - name: Upload
         run: aws s3 sync out "s3://${{ steps.stack.outputs.bucket }}" --delete
