@@ -14,7 +14,7 @@ export function ArchitectureSection() {
     <section id="architecture" className="mt-section mt-arch" aria-labelledby="architecture-title">
       <div className="mt-arch__head">
         <Reveal><h2 id="architecture-title" className="mt-h2">58 modules, seven subdomains, ten roles</h2></Reveal>
-        <Reveal index={1}><p className="mt-body">The DOC003 inventory lists every module. Filter by subdomain or role to see what each role gets.</p></Reveal>
+        <Reveal index={1}><p className="mt-body">Every module ACCS ships, filterable by subdomain or role.</p></Reveal>
       </div>
       <Reveal variant="fade"><ModuleExplorer /></Reveal>
       <Reveal className="mt-diagram">
