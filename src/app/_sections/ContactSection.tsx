@@ -4,7 +4,6 @@ import { sites } from "@/lib/sites";
 const links = [
   { label: "ACCS landing", note: "What ACCS is and who it is for", href: sites.landing },
   { label: "Sign in", note: "For QCU students, professors and staff", href: `${sites.portal}/sign-in` },
-  { label: "Create account", note: "Register for ACCS with a QCU email", href: `${sites.portal}/register` },
   { label: "Design system", note: "Components, tokens and guidelines", href: sites.design },
   { label: "GitHub", note: "github.com/MeetingAt10", href: "https://github.com/MeetingAt10" },
 ];

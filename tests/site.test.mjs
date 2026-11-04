@@ -40,7 +40,7 @@ test("sourced specification counts are present in the exported page", () => {
 
 test("all ecosystem links use configured destinations and every page anchor exists", () => {
   assert.equal(Object.keys(configuredSites).length, 10);
-  const destinations = new Set([configuredSites.landing, configuredSites.design, `${configuredSites.portal}/sign-in`, `${configuredSites.portal}/register`, "https://github.com/MeetingAt10"]);
+  const destinations = new Set([configuredSites.landing, configuredSites.design, `${configuredSites.portal}/sign-in`, "https://github.com/MeetingAt10"]);
   const ids = new Set([...markup.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => decode(id)));
   const external = [];
   for (const [, rawHref] of markup.matchAll(/<a\b[^>]*\bhref="([^"]*)"/g)) {
@@ -50,6 +50,7 @@ test("all ecosystem links use configured destinations and every page anchor exis
     else assert.equal(href, "/");
   }
   for (const destination of destinations) assert.ok(external.includes(destination), destination);
+  assert.ok(!external.some((href) => href.includes("/register")), "no link to /register");
 });
 
 test("the page ships no decorative render files", () => {
