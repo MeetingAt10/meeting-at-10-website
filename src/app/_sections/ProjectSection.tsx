@@ -32,7 +32,7 @@ export function ProjectSection() {
         </div>
         <div className="mt-case__text">
           <h3 className="mt-h3">ACCS landing</h3>
-          <p className="mt-body">The public entry point. It explains ACCS, lists all 58 modules by role and sends each person to the right subdomain.</p>
+          <p className="mt-body">The public entry point. It explains ACCS, lists all 58 modules by role and sends each person to the right place.</p>
           <Button href={sites.landing} variant="secondary" iconEnd="arrow-up-right">Visit ACCS</Button>
         </div>
       </Reveal>

@@ -6,7 +6,7 @@ const stats = [
   { id: "stories", value: 58, label: "user stories" },
   { id: "cases", value: 183, label: "black-box test cases" },
   { id: "sites", value: Object.keys(sites).length, label: "sites on AWS" },
-  { id: "subdomains", value: 7, label: "application subdomains" },
+  { id: "subdomains", value: 7, label: "application workspaces" },
   { id: "members", value: 11, label: "team members" },
 ];
 

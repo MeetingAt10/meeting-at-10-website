@@ -25,13 +25,13 @@ test("the exported team contains the eleven specified surnames and exact roles",
 });
 
 test("sourced specification counts are present in the exported page", () => {
-  for (const [id, value] of Object.entries({ modules: 58, stories: 58, cases: 183, sites: 10 })) {
+  for (const [id, value] of Object.entries({ modules: 58, stories: 58, cases: 183, sites: 4 })) {
     const count = markup.match(new RegExp(`<dd\\b[^>]*data-count="${id}"[^>]*>[\\s\\S]*?<\\/dd>`))?.[0];
     assert.ok(count, id);
     assert.equal(Number(attributes(count)["data-value"]), value, id);
     assert.ok(count.includes(`>${value}<`), `${id} has its final value in static HTML`);
   }
-  assert.equal(Object.keys(configuredSites).length, 10);
+  assert.equal(Object.keys(configuredSites).length, 4);
   const visible = markup.replace(/<script[\s\S]*?<\/script>/g, "");
   assert.doesNotMatch(visible, /DOC0\d\d/);
   assert.doesNotMatch(visible, /\b(ALL|STU|ORG|PRO|STF|CHR|DEAN|GUD|OSAS|PRES|ADM)-\d{2}\b/);
@@ -39,7 +39,7 @@ test("sourced specification counts are present in the exported page", () => {
 });
 
 test("all ecosystem links use configured destinations and every page anchor exists", () => {
-  assert.equal(Object.keys(configuredSites).length, 10);
+  assert.equal(Object.keys(configuredSites).length, 4);
   const destinations = new Set([configuredSites.landing, configuredSites.design, `${configuredSites.portal}/sign-in`, "https://github.com/MeetingAt10"]);
   const ids = new Set([...markup.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => decode(id)));
   const external = [];
@@ -58,11 +58,11 @@ test("the page ships no decorative render files", () => {
 });
 
 test("static export never links to the admin, records or cases consoles", () => {
-  const origins = ["admin", "records", "cases"].map((key) => new URL(configuredSites[key]).origin);
+  const consoles = ["/admin", "/records", "/cases"].map((route) => `href="${configuredSites.portal}${route}`);
   const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith(".html") ? [path.join(dir, e.name)] : []);
   for (const file of walk("out")) {
     const page = readFileSync(file, "utf8");
-    for (const origin of origins) assert.ok(!page.includes(`href="${origin}`), `${file} links to ${origin}`);
+    for (const link of consoles) assert.ok(!page.includes(link), `${file} has ${link}`);
   }
 });
 
