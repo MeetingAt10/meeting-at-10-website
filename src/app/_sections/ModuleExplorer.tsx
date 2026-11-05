@@ -34,13 +34,13 @@ export function ModuleExplorer() {
   const visible = all ? matches : matches.slice(0, limit);
   const inRole = (m: (typeof modules)[number]) => role === "all" || m.role === role;
   const inSite = (m: (typeof modules)[number]) => site === "all" || m.site === site;
-  const siteItems = [{ id: "all", name: "All subdomains", count: modules.filter(inRole).length }, ...subdomains.map((s) => ({ ...s, count: modules.filter((m) => m.site === s.id && inRole(m)).length }))];
+  const siteItems = [{ id: "all", name: "All workspaces", count: modules.filter(inRole).length }, ...subdomains.map((s) => ({ ...s, count: modules.filter((m) => m.site === s.id && inRole(m)).length }))];
   const roleItems = [{ id: "all", name: "Any role", count: modules.filter(inSite).length }, ...roles.map((r) => ({ id: r, name: r, count: modules.filter((m) => m.role === r && inSite(m)).length }))];
   return (
     <MotionConfig reducedMotion="user">
       <div className="mt-explorer">
         <div className="mt-explorer__controls">
-          <Chips label="Filter by subdomain" group="site" value={site} onChange={setSite} items={siteItems} />
+          <Chips label="Filter by workspace" group="site" value={site} onChange={setSite} items={siteItems} />
           <Chips label="Filter by role" group="role" value={role} onChange={setRole} items={roleItems} />
         </div>
         <p className="mt-explorer__count" role="status" aria-live="polite"><span className="mt-mono">{matches.length}</span> of {modules.length} modules</p>
@@ -54,7 +54,7 @@ export function ModuleExplorer() {
             ))}
           </AnimatePresence>
         </motion.ul>
-        {matches.length === 0 && <p className="mt-explorer__empty">No module matches this subdomain and role. Choose another role.</p>}
+        {matches.length === 0 && <p className="mt-explorer__empty">No module matches this workspace and role. Choose another role.</p>}
         {matches.length > limit && (
           <button type="button" className="mt-explorer__more" aria-expanded={all} onClick={() => setAll(!all)}>
             {all ? "Show fewer modules" : `Show all ${matches.length} modules`}
