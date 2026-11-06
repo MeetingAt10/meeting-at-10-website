@@ -66,13 +66,18 @@ test("static export never links to the admin, records or cases consoles", () => 
   }
 });
 
-test("landmarks, the fixed illustrative day and motion primitives survive static export", () => {
+test("landmarks and the working day survive static export", () => {
   assert.equal([...markup.matchAll(/<h1\b/g)].length, 1);
   assert.equal([...markup.matchAll(/<main\b/g)].length, 1);
   assert.equal([...markup.matchAll(/<footer\b/g)].length, 1);
   assert.match(markup, /Skip to content/);
   for (const id of ["main", "about", "projects", "architecture", "timeline", "team", "stats", "contact"]) assert.match(markup, new RegExp(`id="${id}"`));
   for (const text of ["10:00", "Standup", "Build", "Review", "Ship"]) assert.ok(markup.includes(text), text);
-  for (const cls of ["ds-word-rise", "ds-reveal", "ds-scroll-progress", "mt-roster", "ds-aurora"]) assert.ok(markup.includes(cls), cls);
   assert.doesNotMatch(markup, /Coming soon|prototype|synthetic|sample data/i);
+});
+
+test("the site does not use the design system", () => {
+  const pkg = JSON.parse(readFileSync("package.json", "utf8"));
+  assert.ok(!("@meetingat10/design-system" in pkg.dependencies));
+  assert.doesNotMatch(markup, /class="[^"]*\bds-/);
 });
