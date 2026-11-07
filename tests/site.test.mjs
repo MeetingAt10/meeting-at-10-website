@@ -25,7 +25,7 @@ test("the exported team contains the eleven specified surnames and exact roles",
 });
 
 test("sourced specification counts are present in the exported page", () => {
-  for (const [id, value] of Object.entries({ modules: 58, stories: 58, cases: 183, sites: 4 })) {
+  for (const [id, value] of Object.entries({ stories: 58, cases: 183, sites: 4 })) {
     const count = markup.match(new RegExp(`<dd\\b[^>]*data-count="${id}"[^>]*>[\\s\\S]*?<\\/dd>`))?.[0];
     assert.ok(count, id);
     assert.equal(Number(attributes(count)["data-value"]), value, id);
@@ -80,4 +80,24 @@ test("the site does not use the design system", () => {
   const pkg = JSON.parse(readFileSync("package.json", "utf8"));
   assert.ok(!("@meetingat10/design-system" in pkg.dependencies));
   assert.doesNotMatch(markup, /class="[^"]*\bds-/);
+});
+
+test("the clock face has twelve marks: eleven members and the meeting", () => {
+  const face = markup.match(/<ul\b[^>]*class="clock__marks"[^>]*>[\s\S]*?<\/ul>/)?.[0];
+  assert.ok(face);
+  assert.equal([...face.matchAll(/<li\b/g)].length, 12);
+  for (const name of expectedTeam.keys()) assert.ok(decode(face).includes(`>${name}<`), name);
+  assert.match(face, /clock__meeting/);
+});
+
+test("visible copy has no em or en dashes and does not claim this site uses the design system", () => {
+  const text = decode(markup.replace(/<[^>]+>/g, " "));
+  assert.doesNotMatch(text, /[\u2013\u2014]/);
+  assert.doesNotMatch(text, /and this one/);
+});
+
+test("module and role lists stay off this site", () => {
+  const text = decode(markup.replace(/<[^>]+>/g, " "));
+  assert.doesNotMatch(text, /\bmodules?\b/i);
+  assert.doesNotMatch(text, /\broles?\b/i);
 });
