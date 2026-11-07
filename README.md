@@ -1,6 +1,6 @@
 # Meeting At 10
 
-Public website for Meeting At 10, the eleven students who build ACCS for the QCU College of Computer Studies. The site uses Next.js 16, React 19 and `@meetingat10/design-system` pinned to GitHub tag `v1.2.1`. It exports static files to `out/`.
+Public website for Meeting At 10, the eleven students who build ACCS for the QCU College of Computer Studies. The site uses Next.js 16, React 19 and `@meetingat10/design-system` pinned to GitHub tag `v2.0.0`. It exports static files to `out/`. A rebuild of the site lives on the `backup/redesign-v2-20261107` branch and is not merged.
 
 ## Run and verify
 
@@ -29,7 +29,7 @@ python3 -m http.server 4174 --directory out
 
 `/` has sections for the team, its projects, the module inventory, the release process and a typical working day. The team roster lists surnames and project roles. The timetable's now-line stays at 10:00.
 
-The page shows counts for 58 modules, 58 user stories and 183 black-box cases without source captions. Visible copy carries no document codes or module IDs. The AWS site count comes from the ten entries in `src/lib/sites.ts`: seven application sites, the landing site, the design-system site and this site.
+The page shows counts for 58 modules, 58 user stories and 183 black-box cases without source captions. Visible copy carries no document codes or module IDs. The AWS site count comes from the four entries in `src/lib/sites.ts`: the landing site, the portal, the design-system site and this site.
 
 ## Design system
 
@@ -46,9 +46,8 @@ The Office Hours components provide the timetable, case timeline, badges and mot
 | `NEXT_PUBLIC_DESIGN_URL` | https://design.access-ccs.com |
 | `NEXT_PUBLIC_MEETING_URL` | https://team.access-ccs.com |
 
-
 ## Deployment
 
-`.github/workflows/deploy.yml` runs on pushes to `main` and on manual dispatch. It installs the private design-system dependency with `DS_DEPLOY_KEY`, reads the `MeetingBucket`, `MeetingDistributionId` and `MeetingUrl` outputs from the `accs-dev` CloudFormation stack in `ap-southeast-1`, builds the export, uploads `out/` to S3 and invalidates CloudFront. AWS access uses the repository's configured deployment secrets.
+`.github/workflows/deploy.yml` runs on pushes to `main` and `dev` and on manual dispatch. `main` deploys from the `accs-prod` CloudFormation stack and `dev` from `accs-dev`, both in `ap-southeast-1`. It installs the private design-system dependency with `DS_DEPLOY_KEY`, reads the `Meeting*` outputs from the stack, runs `npm run verify` with `NEXT_PUBLIC_PORTAL_URL` and `NEXT_PUBLIC_DESIGN_URL` taken from the stack's `AppUrl` and `DesignUrl` outputs, uploads `out/` to S3 and invalidates CloudFront. AWS access uses the repository's configured deployment secrets.
 
-The deployed URL is the corresponding CloudFront default above. Custom domains remain a proposal.
+Links in the build point at the same environment's portal and design-system sites. The workflow comments describe `main` as the plain hostnames and `dev` as the `-dev` hostnames.
