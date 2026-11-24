@@ -8,7 +8,6 @@ import { ProjectSection } from "./_sections/ProjectSection";
 import { StatsSection } from "./_sections/StatsSection";
 import { TeamSection } from "./_sections/TeamSection";
 import { TimelineSection } from "./_sections/TimelineSection";
-import { ScrollIndex } from "./_components/ScrollIndex";
 
 export default function Home() {
   return (
@@ -16,7 +15,6 @@ export default function Home() {
       <a className="team-skip" href="#main">Skip to content</a>
       <Navbar />
       <main id="main" tabIndex={-1}>
-        <ScrollIndex />
         <Hero />
         <AboutSection />
         <ProjectSection />

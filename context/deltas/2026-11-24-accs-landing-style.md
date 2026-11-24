@@ -1,5 +1,5 @@
 # ACCS landing style for Meeting At 10
-Status: verified locally. The Meeting At 10 identity follow-up supersedes the first design pass.
+Status: verified locally. ACCS brand alignment supersedes the earlier design passes.
 
 Master: README, Content and routes and Design system. Prior acceptance: 2026-11-01 redesign delta.
 
@@ -14,3 +14,9 @@ Acceptance: verify rendered desktop and mobile layouts, section navigation, acti
 The revised direction gives Meeting At 10 its own typography, palette and composition. Use the standing 10:00 meeting as the basis for the visual treatment and motion. ACCS remains a reference for animation quality and responsive behavior. Replace the shared starfield, horizon and traveling report treatment with motion and artwork specific to the team.
 
 Acceptance: the opening view has a recognizable Meeting At 10 identity alongside the existing content and eleven Drive portraits. Verify the team-specific motion, reduced-motion behavior, navigation and previews on desktop and mobile, then verify the deployment on team-dev.
+
+## ACCS brand alignment
+
+Use ACCS landing typography, blue palette, light section surfaces, rounded edges and motion timing. Design the hero, navigation and scroll details for Meeting At 10. Replace the clock board and reading rail with a composition centered on the team.
+
+Acceptance: compare desktop and mobile views with the live ACCS landing. The shared styling should be visible across the page, with a distinct hero and components. Verify all eleven portraits, navigation, module filtering and reduced motion.

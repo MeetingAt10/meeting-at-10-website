@@ -33,7 +33,7 @@ The page shows counts for 58 modules, 58 user stories and 183 black-box cases wi
 
 ## Design system
 
-The page uses the standing 10:00 meeting as its design motif. The hero pairs a clock with an agenda, and the section rail follows the reader's place on the page. The palette combines cool paper, deep ink, meeting blue, yellow and teal. Plus Jakarta Sans, Inter and JetBrains Mono distinguish headings, body text and times. Motion respects reduced-motion preferences.
+The page uses the ACCS landing palette, Poppins headings and Inter body text. Its hero places the team portraits around the standing 10:00 meeting time. Rounded surfaces and pale blue section backgrounds carry the shared styling through the page. Motion respects reduced-motion preferences.
 
 Office Hours components provide the timetable, case timeline, badges and motion. The team section uses square WebP portraits in `public/portraits/` sourced from Capstone Drive `05_Design/1x1`.
 

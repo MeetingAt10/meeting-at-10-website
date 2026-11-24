@@ -23,7 +23,7 @@ export function Navbar() {
   return (
     <header className="mt-nav" data-open={open}>
       <div className="mt-nav__bar">
-        <a href="#main" className="mt-nav__brand" aria-label="Meeting At 10 home"><Logo /></a>
+        <a href="#main" className="mt-nav__brand" aria-label="Meeting At 10 home"><Logo inverse /></a>
         <nav aria-label="Primary" className="mt-nav__links">{links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>
         <div className="mt-nav__actions"><a className="mt-nav__cta" href={sites.landing}>Visit ACCS <span aria-hidden="true">↗</span></a></div>
         <button ref={toggle} type="button" className="mt-nav__toggle" aria-expanded={open} aria-controls="mt-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)}><Icon name={open ? "x" : "list"} size={24} /></button>
