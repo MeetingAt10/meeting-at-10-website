@@ -33,7 +33,9 @@ The page shows counts for 58 modules, 58 user stories and 183 black-box cases wi
 
 ## Design system
 
-The Office Hours components provide the timetable, case timeline, badges and motion. The page uses type and live component previews, and ships no image files. Styling lives in `src/app/globals.css` and builds on the `--ds-*` variables and the brand palette.
+The page follows the ACCS landing page's Poppins and Inter typography, blue palette, starfield and horizon artwork. The navigation shows reading progress. On desktop, an illustrated card follows the scroll between the hero and section stops. The card is hidden on narrow screens and when reduced motion is enabled.
+
+Office Hours components provide the timetable, case timeline, badges and motion. The team section uses square WebP portraits in `public/portraits/` sourced from Capstone Drive `05_Design/1x1`.
 
 ## Build-time URLs
 

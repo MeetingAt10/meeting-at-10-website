@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, MotionConfig, motion } from "motion/react";
-import { Button, Icon, Logo } from "@meetingat10/design-system/react";
+import { Icon, Logo } from "@meetingat10/design-system/react";
 import { sites } from "@/lib/sites";
 
 const links = [
@@ -14,7 +13,20 @@ const links = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const bar = useRef<HTMLElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const update = () => {
+      setScrolled(window.scrollY > 8);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.current?.style.setProperty("--progress", String(max > 0 ? Math.min(1, window.scrollY / max) : 0));
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => { window.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
+  }, []);
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(false); toggle.current?.focus(); } };
@@ -22,33 +34,19 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
   return (
-    <header className="mt-nav" data-open={open}>
+    <header ref={bar} className="mt-nav" data-open={open} data-solid={scrolled || open}>
       <div className="mt-nav__bar">
-        <a href="#main" className="mt-nav__brand" aria-label="Meeting At 10 home"><Logo /></a>
-        <nav aria-label="Primary" className="mt-nav__links">
-          {links.map((l) => <a key={l.href} href={l.href}>{l.label}</a>)}
-        </nav>
-        <div className="mt-nav__actions">
-          <Button href={sites.landing} size="sm" iconEnd="arrow-up-right">Visit ACCS</Button>
-          <button ref={toggle} type="button" className="mt-nav__toggle" aria-expanded={open} aria-controls="mt-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)}>
-            <Icon name={open ? "x" : "list"} size={24} />
-          </button>
-        </div>
+        <span className="mt-nav__progress" aria-hidden="true" />
+        <a href="#main" className="mt-nav__brand" aria-label="Meeting At 10 home"><Logo inverse /></a>
+        <nav aria-label="Primary" className="mt-nav__links">{links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>
+        <div className="mt-nav__actions"><a className="mt-nav__cta" href={sites.landing}>Visit ACCS</a></div>
+        <button ref={toggle} type="button" className="mt-nav__toggle" aria-expanded={open} aria-controls="mt-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)}><Icon name={open ? "x" : "list"} size={24} /></button>
       </div>
-      <MotionConfig reducedMotion="user">
-        <AnimatePresence>
-          {open && (
-            <motion.nav id="mt-menu" aria-label="Mobile" className="mt-nav__menu" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}>
-              <div className="mt-nav__menu-inner">
-                {links.map((l, i) => (
-                  <motion.a key={l.href} href={l.href} onClick={() => setOpen(false)} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.06 * i + 0.1, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>{l.label}</motion.a>
-                ))}
-                <Button href={sites.landing} block iconEnd="arrow-up-right">Visit ACCS</Button>
-              </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
-      </MotionConfig>
+      <div className="mt-nav__scrim" aria-hidden="true" onClick={() => setOpen(false)} />
+      <div id="mt-menu" className="mt-nav__menu" inert={!open}>
+        <nav aria-label="Mobile">{links.map((link, i) => <a key={link.href} href={link.href} style={{ "--i": i } as React.CSSProperties} onClick={() => setOpen(false)}>{link.label}</a>)}</nav>
+        <a className="mt-nav__cta" href={sites.landing}>Visit ACCS</a>
+      </div>
     </header>
   );
 }

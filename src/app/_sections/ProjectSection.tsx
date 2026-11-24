@@ -4,6 +4,7 @@ import { sites } from "@/lib/sites";
 export function ProjectSection() {
   return (
     <section id="projects" className="mt-section mt-band mt-projects" aria-labelledby="projects-title">
+      <span className="mt-dock mt-dock--section" data-dock="projects" aria-hidden="true" />
       <Reveal><h2 id="projects-title" className="mt-h2 mt-projects__title">What we ship</h2></Reveal>
 
       <Reveal className="mt-case mt-case--wide">

@@ -13,6 +13,7 @@ const stats = [
 export function StatsSection() {
   return (
     <section id="stats" className="mt-section mt-stats" aria-labelledby="stats-title">
+      <span className="mt-dock mt-dock--section" data-dock="stats" aria-hidden="true" />
       <Reveal><h2 id="stats-title" className="mt-h2">The record in numbers</h2></Reveal>
       <dl className="mt-ledger">
         {stats.map((s, i) => (

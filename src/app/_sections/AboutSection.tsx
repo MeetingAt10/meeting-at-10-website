@@ -12,6 +12,7 @@ const DAY: TimetableEvent[] = [
 export function AboutSection() {
   return (
     <section id="about" className="mt-section mt-about" aria-labelledby="about-title">
+      <span className="mt-dock mt-dock--section" data-dock="about" aria-hidden="true" />
       <div className="mt-about__intro">
         <Reveal><h2 id="about-title" className="mt-h2">Eleven students and one standing meeting</h2></Reveal>
         <Reveal index={1}><p className="mt-body">Meeting At 10 is a team of eleven at the Quezon City University College of Computer Studies. We write the specs, design the interface, build the code and run ACCS, the workspace for CCS forums, consultations and concern reports.</p></Reveal>

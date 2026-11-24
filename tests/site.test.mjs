@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const html = readFileSync("out/index.html", "utf8");
@@ -53,7 +53,24 @@ test("all ecosystem links use configured destinations and every page anchor exis
   assert.ok(!external.some((href) => href.includes("/register")), "no link to /register");
 });
 
-test("the page ships no decorative render files", () => {
+test("the exported roster uses the intended local portraits", () => {
+  const expected = new Map([
+    ["Reyes", ["reyes", 480]], ["Dela Cruz", ["dela-cruz", 480]], ["Jumuad", ["jumuad", 400]],
+    ["Sebial", ["sebial", 480]], ["Añonuevo", ["anonuevo", 480]], ["Balili", ["balili", 480]],
+    ["Alaña", ["alana", 480]], ["Belardo", ["belardo", 480]], ["Comawas", ["comawas", 480]],
+    ["Magpantay", ["magpantay", 300]], ["Suico", ["suico", 480]],
+  ]);
+  for (const [, tag, content] of markup.matchAll(/(<article\b[^>]*data-member="[^"]*"[^>]*>)([\s\S]*?)<\/article>/g)) {
+    const member = attributes(tag)["data-member"];
+    const [name, size] = expected.get(member);
+    const image = content.match(/<img\b[^>]*>/)?.[0];
+    assert.ok(image, `${member} has a portrait`);
+    const attrs = attributes(image);
+    assert.equal(attrs.src, `/portraits/${name}.webp`, member);
+    assert.equal(Number(attrs.width), size, member);
+    assert.equal(Number(attrs.height), size, member);
+    assert.ok(existsSync(`out${attrs.src}`), `${member} portrait is in the export`);
+  }
   assert.doesNotMatch(markup, /\/imagery\//);
 });
 

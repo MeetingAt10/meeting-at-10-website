@@ -9,6 +9,7 @@ import { StatsSection } from "./_sections/StatsSection";
 import { TeamSection } from "./_sections/TeamSection";
 import { TimelineSection } from "./_sections/TimelineSection";
 import { ScrollProgress } from "@meetingat10/design-system/react";
+import { Courier } from "./_components/Courier";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <ScrollProgress />
       <Navbar />
       <main id="main" tabIndex={-1}>
+        <Courier />
         <Hero />
         <AboutSection />
         <ProjectSection />
