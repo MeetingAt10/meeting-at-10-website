@@ -28,7 +28,6 @@ const groups: { name: string; tone: Tone; note?: string; pairs?: boolean; member
 export function TeamSection() {
   return (
     <section id="team" className="mt-section mt-band mt-team" aria-labelledby="team-title">
-      <span className="mt-dock mt-dock--section" data-dock="team" aria-hidden="true" />
       <Reveal><h2 id="team-title" className="mt-h2">Who does what</h2></Reveal>
       {groups.map((g) => (
         <div key={g.name} className="mt-group" data-tone={g.tone}>

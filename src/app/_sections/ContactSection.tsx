@@ -11,7 +11,6 @@ const links = [
 export function ContactSection() {
   return (
     <section id="contact" className="mt-section mt-band mt-contact" aria-labelledby="contact-title">
-      <span className="mt-dock mt-dock--section" data-dock="contact" aria-hidden="true" />
       <Reveal><h2 id="contact-title" className="mt-h2">Where to find the work</h2><p className="mt-body">ACCS is live, the components are in the design system and the code is on GitHub. Pick where to start.</p></Reveal>
       <ul className="mt-links">
         {links.map((l, i) => (

@@ -8,17 +8,15 @@ import { ProjectSection } from "./_sections/ProjectSection";
 import { StatsSection } from "./_sections/StatsSection";
 import { TeamSection } from "./_sections/TeamSection";
 import { TimelineSection } from "./_sections/TimelineSection";
-import { ScrollProgress } from "@meetingat10/design-system/react";
-import { Courier } from "./_components/Courier";
+import { ScrollIndex } from "./_components/ScrollIndex";
 
 export default function Home() {
   return (
     <>
       <a className="team-skip" href="#main">Skip to content</a>
-      <ScrollProgress />
       <Navbar />
       <main id="main" tabIndex={-1}>
-        <Courier />
+        <ScrollIndex />
         <Hero />
         <AboutSection />
         <ProjectSection />

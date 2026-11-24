@@ -11,7 +11,6 @@ const steps = [
 export function TimelineSection() {
   return (
     <section id="timeline" className="mt-section mt-timeline" aria-labelledby="timeline-title">
-      <span className="mt-dock mt-dock--section" data-dock="timeline" aria-hidden="true" />
       <Reveal><h2 id="timeline-title" className="mt-h2">From spec to release</h2></Reveal>
       <ol className="mt-steps">
         {steps.map((s, i) => (
